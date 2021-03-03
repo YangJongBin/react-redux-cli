@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import './index.css';
-import App from './App.js';
+import Home from './containers/Home';
 import reportWebVitals from './reportWebVitals';
 import rootReducer from './modules';
 
@@ -13,7 +13,7 @@ const store = createStore(rootReducer, composeWithDevTools());
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Home />
   </Provider>,
   document.getElementById('root')
 );

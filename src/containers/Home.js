@@ -1,24 +1,16 @@
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 
 import Logo from '../components/Logo.js';
 import { left, right } from '../modules/spin';
 
-const Home = ({ flow, onLeft, onRight }) => {
+export default function Home() {
+  const { flow } = useSelector(state => state.spin);
+  const dispatch = useDispatch();
+
+  const onLeft = useCallback(() => dispatch(left()), [dispatch]);
+  const onRight = useCallback(() => dispatch(right()), [dispatch]);
+
   return <Logo flow={flow} onLeft={onLeft} onRight={onRight}></Logo>;
 };
 
-const mapStateToProps = (state) => ({
-  flow: state.spin.flow,
-});
-
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      onLeft: left,
-      onRight: right,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
